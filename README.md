@@ -40,5 +40,5 @@ Autenticação e Login;
 
 Outras Funcionalidades:
 
-* Chat com cliente;
+* Chat com cliente [Let's chat](https://github.com/sdelements/lets-chat);
 
