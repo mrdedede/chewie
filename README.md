@@ -30,7 +30,6 @@ Cadastros (CRUDs):
 * Pet Shop;
 * Veterinário;
 * Reserva;
-* Compra;
 * Serviço;
 * Consulta veterinária; 
 
