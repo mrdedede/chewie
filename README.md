@@ -4,7 +4,7 @@ Chewie
 Tecnologias
 -----------
 
-* NodeJS + Express
+* AdonisJS
 * ReactJS
 * Banco de dados: MongoDB
 
