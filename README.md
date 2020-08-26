@@ -35,8 +35,7 @@ Cadastros (CRUDs):
 
 Autenticação e Login;
 
-* Criar sessão;
-* Esqueci minha senha;
+* Integrar com o Firebase;
 
 Outras Funcionalidades:
 
