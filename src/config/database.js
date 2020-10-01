@@ -84,7 +84,7 @@ module.exports = {
 
   // mongodb: {
   //   client: 'mongodb',
-  //   connectionString: Env.get('DB_CONNECTION_STRING', 'mongodb+srv://pitu:dr4c4rys@cluster0.yn5rs.mongodb.net/rockettwitter?retryWrites=true&w=majority'),
+  //   connectionString: Env.get('DB_CONNECTION_STRING', ''),
   //   connection: {
   //     host: Env.get('DB_HOST', 'cluster0.yn5rs.mongodb.net'),
   //     port: Env.get('DB_PORT', 27017),
