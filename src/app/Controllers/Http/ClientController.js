@@ -21,7 +21,7 @@ class ClientController {
   async index () {
     const clients = await Client.all();
 
-    const clients;
+    return clients;
   }
 
   /**
@@ -33,8 +33,9 @@ class ClientController {
    * @param {Response} ctx.response
    */
   async store ({ request, auth }) {
-    const data = request.body();
-    const client = await Client.create({ user_id: auth.user.id , ...data});
+    const {name, phone} = request.body;
+
+    const client = await Client.create({ user_id: auth.user.id , name, phone});
 
     return client;
 
@@ -45,9 +46,6 @@ class ClientController {
    * GET clients/:id
    *
    * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async show ({ params }) {
     const client = await Client.findOrFail(params.id);
@@ -64,7 +62,7 @@ class ClientController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
-    
+
   }
 
   /**

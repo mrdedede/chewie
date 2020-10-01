@@ -24,3 +24,10 @@ Route.post('/authenticate', 'AuthController.authenticate');
 Route.group(()=> {
   Route.resource('clients', 'ClientController').apiOnly();
 }).middleware('auth');
+
+
+
+//SERVICE
+Route.group(()=> {
+  Route.resource('/:username/services', 'ServiceController').apiOnly();
+});
