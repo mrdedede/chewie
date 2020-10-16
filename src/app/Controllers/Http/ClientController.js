@@ -19,7 +19,7 @@ class ClientController {
    * @param {View} ctx.view
    */
   async index () {
-    const clients = await Client.all();
+    const clients = await Client.query().with('user').fetch();
 
     return clients;
   }
