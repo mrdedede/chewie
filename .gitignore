@@ -8,7 +8,7 @@ tmp
 .env
 
 # The development sqlite file
-database/*.sqlite3
+src/database/adonis.sqlite
 
 .vscode
 

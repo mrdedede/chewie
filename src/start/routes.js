@@ -34,8 +34,8 @@ Route.group(()=>{
 
 //SERVICE
 Route.group(()=> {
-  Route.resource(':username/services', 'ServiceController').apiOnly();
-});
+  Route.resource('services', 'ServiceController').apiOnly();
+}).middleware('auth');
 
 //VET
 Route.group(()=>{

@@ -26,7 +26,7 @@ class BookingController {
    *
    * @param {object} ctx
    * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * @param {Auth} ctx.auth
    */
   async store ({ request, auth }) {
     const {name, date, petshop_id, service_id, pet_id} = request.body;

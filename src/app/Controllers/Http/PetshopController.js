@@ -48,7 +48,7 @@ class PetshopController {
    * @param {object} ctx
    */
   async show ({ params }) {
-    const petshop = await Petshop.findOrFail(params.id);
+    const petshop = await Petshop.query(params.id).with('services').fetch();
 
     return petshop;
   }

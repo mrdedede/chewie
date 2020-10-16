@@ -15,7 +15,7 @@ class ServiceController {
    *
    */
   async index () {
-    const services = await Service.all();
+    const services = await Service.query().with('petshop').fetch();
 
     return services;
   }
@@ -26,25 +26,20 @@ class ServiceController {
    *
    * @param {object} ctx
    * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * @param {Auth} ctx.auth
    */
-  async store ({ request, response }) {
+  async store ({ request, auth, response}) {
     const {name, value, duration, employee, description} = request.body;
-    const {username} = request.params;
+  
+    if(auth.user.user_type !== 'petshop') return response.status(403);
 
-    const petshop = await Petshop.findBy('username', username);
-
-    if(!petshop){ 
-      return response.status(403).json({message: "The username on query does not belongs to a petshop"});
-    }
-    
     const service = await Service.create({
       name,
       value,
       duration,
       employee,
       description,
-      petshop_id: petshop.id
+      petshop_id: auth.user.id
     });
 
     return service;
@@ -55,9 +50,6 @@ class ServiceController {
    * GET services/:id
    *
    * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async show ({ params }) {
     const service = await Service.findOrFail(params.id);
@@ -87,7 +79,7 @@ class ServiceController {
   async destroy ({ params, auth, response }) {
     const service = await Service.findOrFail(params.id);
 
-    if (service.user_id !== auth.user.id) return response.status(401);
+    if (service.petshop_id !== auth.user.id) return response.status(401);
 
     service.delete();
   }

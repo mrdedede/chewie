@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Service extends Model {
+    petshop(){
+        return this.belongsTo('App/Models/Petshop');
+    }
 }
 
 module.exports = Service
