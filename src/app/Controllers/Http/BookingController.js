@@ -13,10 +13,6 @@ class BookingController {
    * Show a list of all bookings.
    * GET bookings
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async index () {
     const bookings = await Booking.query().with('client').fetch();
@@ -33,7 +29,7 @@ class BookingController {
    * @param {Response} ctx.response
    */
   async store ({ request, auth }) {
-    const {name, date, petshop_id, service_id, pets_id} = request.body;
+    const {name, date, petshop_id, service_id, pet_id} = request.body;
 
     const booking = await Booking.create({
       name,
@@ -41,7 +37,7 @@ class BookingController {
       user_id: auth.user.id,
       petshop_id,
       service_id,
-      pets_id
+      pet_id
     });
 
     return booking;

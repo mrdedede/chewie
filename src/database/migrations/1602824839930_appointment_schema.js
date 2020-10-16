@@ -3,9 +3,9 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class BookingSchema extends Schema {
+class AppointmentSchema extends Schema {
   up () {
-    this.create('bookings', (table) => {
+    this.create('appointments', (table) => {
       table.increments()
       table.string('name').notNullable();
       table.date('date').notNullable();
@@ -17,19 +17,22 @@ class BookingSchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
       table
-        .integer('petshop_id')
+        .integer('vet_id')
+        .notNullable()
         .references('id')
-        .inTable('petshops')
+        .inTable('vets')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
       table
-        .integer('service_id')
+        .integer('vet_service_id')
+        .notNullable()
         .references('id')
-        .inTable('services')
+        .inTable('vet_services')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
       table
         .integer('pet_id')
+        .notNullable()
         .references('id')
         .inTable('pets')
         .onUpdate('CASCADE')
@@ -39,8 +42,8 @@ class BookingSchema extends Schema {
   }
 
   down () {
-    this.drop('bookings')
+    this.drop('appointments')
   }
 }
 
-module.exports = BookingSchema
+module.exports = AppointmentSchema

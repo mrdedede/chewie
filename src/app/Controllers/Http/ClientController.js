@@ -21,7 +21,7 @@ class ClientController {
   async index () {
     const clients = await Client.query().with('user').fetch();
 
-    return clients;
+    return clients.query().with('pets').fetch();
   }
 
   /**

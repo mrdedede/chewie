@@ -10,6 +10,12 @@ class Client extends Model {
     bookings(){
         return this.hasMany('App/Models/Booking');
     }
+    appointments(){
+        return this.hasMany('App/Models/Appointment');
+    }
+    pets(){
+        return this.hasMany('App/Models/Pet');
+    }
 }
 
 module.exports = Client

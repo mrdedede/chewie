@@ -25,9 +25,19 @@ Route.group(()=> {
   Route.resource('clients', 'ClientController').apiOnly();
 }).middleware('auth');
 
+//APPOINTMENT
+Route.group(()=>{
+  Route.resource('appointments', 'AppointmentController').apiOnly();
+}).middleware('auth');
+
 //BOOKING
 Route.group(()=>{
   Route.resource('bookings', 'BookingController').apiOnly();
+}).middleware('auth');
+
+//PET
+Route.group(()=>{
+  Route.resource('pets', 'PetController').apiOnly();
 }).middleware('auth');
 
 //SERVICE
