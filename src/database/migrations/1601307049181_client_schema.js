@@ -17,24 +17,6 @@ class ClientSchema extends Schema {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      table
-        .integer('booking_id')
-        .references('id')
-        .inTable('bookings')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-      table
-        .integer('appointment_id')
-        .references('id')
-        .inTable('appointments')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-      table
-        .integer('pet_id')
-        .references('id')
-        .inTable('pets')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
       table.timestamps()
     })
   }

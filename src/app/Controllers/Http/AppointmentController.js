@@ -35,7 +35,7 @@ class AppointmentController {
     const appointment = await Appointment.create({
       name,
       date,
-      user_id: auth.user.id,
+      client_id: auth.user.id,
       vet_id,
       vet_service_id,
       pet_id

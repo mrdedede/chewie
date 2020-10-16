@@ -10,10 +10,10 @@ class BookingSchema extends Schema {
       table.string('name').notNullable();
       table.date('date').notNullable();
       table
-        .integer('user_id')
+        .integer('client_id')
         .notNullable()
         .references('id')
-        .inTable('users')
+        .inTable('clients')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
       table

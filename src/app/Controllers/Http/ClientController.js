@@ -21,7 +21,7 @@ class ClientController {
   async index () {
     const clients = await Client.query().with('user').fetch();
 
-    return clients.query().with('pets').fetch();
+    return clients;
   }
 
   /**
@@ -48,7 +48,11 @@ class ClientController {
    * @param {object} ctx
    */
   async show ({ params }) {
-    const client = await Client.findOrFail(params.id);
+    const client = await Client.query(params.id)
+      .with('pets')
+      .with('bookings')
+      .with('appointments')
+      .fetch();
 
     return client;
   }
@@ -61,8 +65,16 @@ class ClientController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request }) {
+    /* 
+      const data = request.only(['content'])
+      const post = await Post.find(params.id) //trocar "Post" pelo objeto em questão
 
+      post.merge(data) //trocar "Post" pelo objeto em questão
+      await post.save() //trocar "Post" pelo objeto em questão
+
+      return post //trocar "Post" pelo objeto em questão
+    */
   }
 
   /**

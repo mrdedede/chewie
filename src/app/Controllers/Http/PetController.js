@@ -36,7 +36,7 @@ class PetController {
       name,
       breed,
       age,
-      user_id: auth.user.id
+      client_id: auth.user.id
     });
 
     return pet;

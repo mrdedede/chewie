@@ -34,7 +34,7 @@ class BookingController {
     const booking = await Booking.create({
       name,
       date,
-      user_id: auth.user.id,
+      client_id: auth.user.id,
       petshop_id,
       service_id,
       pet_id

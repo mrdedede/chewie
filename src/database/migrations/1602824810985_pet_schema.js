@@ -11,10 +11,10 @@ class PetSchema extends Schema {
       table.string('breed');
       table.integer('age');
       table
-        .integer('user_id')
+        .integer('client_id')
         .notNullable()
         .references('id')
-        .inTable('users')
+        .inTable('clients')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
       table.timestamps()
