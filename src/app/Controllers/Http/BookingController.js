@@ -77,7 +77,7 @@ class BookingController {
   async destroy ({ params, auth, response }) {
     const booking = await Booking.findOrFail(params.id);
 
-    if(booking.user_id !== auth.user.id) return response.status(401);
+    if(booking.client_id !== auth.user.id) return response.status(401);
 
     booking.delete();
   }

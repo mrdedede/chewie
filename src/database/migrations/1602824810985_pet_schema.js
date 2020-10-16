@@ -8,6 +8,7 @@ class PetSchema extends Schema {
     this.create('pets', (table) => {
       table.increments()
       table.string('name').notNullable();
+      table.string('pet_type').notNullable();
       table.string('breed');
       table.integer('age');
       table

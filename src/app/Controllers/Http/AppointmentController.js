@@ -78,7 +78,7 @@ class AppointmentController {
   async destroy ({ params, auth, response }) {
     const appointment = await Appointment.findOrFail(params.id);
 
-    if(appointment.user_id !== auth.user.id) return response.status(401);
+    if(appointment.client_id !== auth.user.id) return response.status(401);
 
     appointment.delete();
   }

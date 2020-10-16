@@ -30,10 +30,11 @@ class PetController {
    * @param {Response} ctx.response
    */
   async store ({ request, auth }) {
-    const {name, breed, age} = request.body;
+    const {name, pet_type, breed, age} = request.body;
 
     const pet = await Pet.create({
       name,
+      pet_type,
       breed,
       age,
       client_id: auth.user.id
@@ -77,7 +78,7 @@ class PetController {
   async destroy ({ params, auth, response }) {
     const pet = await Pet.findOrFail(params.id);
 
-    if(pet.user_id !== auth.user.id) return response.status(401);
+    if(pet.client_id !== auth.user.id) return response.status(401);
 
     pet.delete();
   }

@@ -27,7 +27,17 @@ Route.group(()=>{
   Route.resource('pets', 'PetController').apiOnly();
 }).middleware('auth');
 
+//PETSHOP
+Route.group(()=>{
+  Route.resource('petshops', 'PetshopController').apiOnly();
+}).middleware('auth');
+
 //SERVICE
 Route.group(()=> {
-  Route.resource('/:username/services', 'ServiceController').apiOnly();
+  Route.resource(':username/services', 'ServiceController').apiOnly();
 });
+
+//VET
+Route.group(()=>{
+  Route.resource('vets', 'VetController').apiOnly();
+}).middleware('auth');
