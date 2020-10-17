@@ -1,0 +1,18 @@
+.petshop-container {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 40% auto;
+}
+
+.text-centralized {
+  margin-left: 33%;
+}
+
+.petshop-bio-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.text-center {
+  text-align: center;
+}

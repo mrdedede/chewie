@@ -1,0 +1,14 @@
+.footer {
+  background-color: #F2B680;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.logo-footer {
+  margin-left: 10px;
+}
+
+.footer-names {
+  text-align: right;
+  margin-right: 10px;
+}

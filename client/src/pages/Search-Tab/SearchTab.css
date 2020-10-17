@@ -1,0 +1,21 @@
+.shoplist-item {
+  background-color: #D8D8D8;
+  margin-bottom: 5px;
+  display: grid;
+  grid-template-columns: 40% auto;
+}
+
+.img-margin {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.text-centralized {
+  margin-left: 33%;
+  cursor: pointer;
+}
+
+.divided-data {
+  display: grid;
+  grid-template-columns: auto auto;
+}

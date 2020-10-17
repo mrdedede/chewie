@@ -1,0 +1,27 @@
+.search-tab {
+  background-color: #F2B680;
+  margin-top: -1.5vmax
+}
+
+.align-right {
+  text-align: right;
+}
+
+.search-box {
+  margin: 5px;
+  height: 40px;
+  font-size: large;
+  border-radius: 10px;
+  border: none;
+}
+
+.right-item {
+  margin-right: 3vmax;
+}
+
+.container-user-data {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: grid;
+  grid-template-columns: 25% auto;
+}

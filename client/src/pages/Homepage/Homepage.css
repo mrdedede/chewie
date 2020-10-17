@@ -1,0 +1,69 @@
+.homepage-panel {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  height: 30vmax;
+  transition: 0.5s;
+}
+
+.homepage-puppies {
+  background-color: #ABD907;
+}
+
+.puppies-title, .puppies-subtitle, .puppies-text {
+  margin-left: 5%;
+}
+
+.homepage-shihtzu {
+  background-color: #F2B680;
+}
+
+.shihtzu-title, .shihtzu-subtitle, .shihtzu-text {
+  margin-left: 5%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bit-margin {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 10% 25% 30% 25% 10%;
+}
+
+.circle-button {
+  cursor: pointer;
+  border: 0px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #F2B680;
+  color: #F20544
+}
+/* 
+.homepagePuppies {
+  background-image: url('two-yellow-labrador-retriever.jpeg');
+  background-repeat: no-repeat;
+  background-position: 0% 5%;
+}
+
+.homepageShihtzu {
+  background-image: url('shihtzu.jpeg');
+  background-repeat: no-repeat;
+}
+
+.homepagePuppies:hover {
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.homepageShihtzu:hover {
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.homepagePuppies > p, p:hover, h1, h1:hover, h2, h2:hover {
+  opacity: 1;
+  margin: 10px;
+  color: #f6f6f6
+} */

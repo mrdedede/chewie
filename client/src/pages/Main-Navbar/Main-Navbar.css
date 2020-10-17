@@ -1,0 +1,29 @@
+.nav {
+  display: grid;
+  grid-template-columns: 10% auto 10% 10% 10%;
+  grid-column-gap: 10px;
+}
+
+ul {
+  background-color: #F20544;
+}
+
+.button {
+  cursor: pointer;
+  display: block;
+  color: #F2F2F2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #F2B680;
+}
+
+.button .selected {
+  background-color: #ABD907;
+}
+
+.logo {
+  text-align: left;
+}
