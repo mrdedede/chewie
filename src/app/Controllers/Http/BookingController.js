@@ -5,6 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Booking = use('App/Models/Booking');
+const Client = use('App/Models/Client');
 /**
  * Resourceful controller for interacting with bookings
  */
@@ -31,10 +32,12 @@ class BookingController {
   async store ({ request, auth }) {
     const {name, date, petshop_id, service_id, pet_id} = request.body;
 
+    const client = await Client.findBy('user_id',auth.user.id);
+   
     const booking = await Booking.create({
       name,
       date,
-      client_id: auth.user.id,
+      client_id: client.id,
       petshop_id,
       service_id,
       pet_id

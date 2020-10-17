@@ -5,6 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Appointment = use('App/Models/Appointment');
+const Client = use('App/Models/Appointment');
 
 /**
  * Resourceful controller for interacting with appointments
@@ -32,10 +33,12 @@ class AppointmentController {
   async store ({ request, auth }) {
     const {name, date, vet_id, vet_service_id, pet_id} = request.body;
 
+    const client = await Client.findBy('user_id', auth.user.id);
+
     const appointment = await Appointment.create({
       name,
       date,
-      client_id: auth.user.id,
+      client_id: client.id,
       vet_id,
       vet_service_id,
       pet_id

@@ -34,10 +34,15 @@ Route.group(()=>{
 
 //SERVICE
 Route.group(()=> {
-  Route.resource('services', 'ServiceController').apiOnly();
+  Route.resource('petshop/services', 'ServiceController').apiOnly();
 }).middleware('auth');
 
 //VET
 Route.group(()=>{
   Route.resource('vets', 'VetController').apiOnly();
+}).middleware('auth');
+
+//VET SERVICE
+Route.group(()=>{
+  Route.resource('vet/services', 'VetServiceController').apiOnly();
 }).middleware('auth');

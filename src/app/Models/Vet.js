@@ -7,6 +7,9 @@ class Vet extends Model {
     user(){
         return this.belongsTo('App/Models/User');
     }
+    vetServices(){
+        return this.hasMany('App/Models/VetService');
+    }
 }
 
 module.exports = Vet

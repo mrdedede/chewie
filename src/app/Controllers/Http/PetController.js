@@ -5,6 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Pet = use('App/Models/Pet');
+const Client = use('App/Models/Client')
 
 /**
  * Resourceful controller for interacting with pets
@@ -32,12 +33,14 @@ class PetController {
   async store ({ request, auth }) {
     const {name, pet_type, breed, age} = request.body;
 
+    const client = await Client.findBy('user_id', auth.user.id);
+
     const pet = await Pet.create({
       name,
       pet_type,
       breed,
       age,
-      client_id: auth.user.id
+      client_id: client.id
     });
 
     return pet;

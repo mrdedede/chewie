@@ -5,6 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Service = use('App/Models/Service');
+const Petshop = use('App/Models/Petshop');
 /**
  * Resourceful controller for interacting with services
  */
@@ -27,11 +28,14 @@ class ServiceController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Auth} ctx.auth
+   * @param {Response} ctx.response
    */
   async store ({ request, auth, response}) {
     const {name, value, duration, employee, description} = request.body;
   
     if(auth.user.user_type !== 'petshop') return response.status(403);
+
+    const petshop = await Petshop.findBy('user_id', auth.user.id);
 
     const service = await Service.create({
       name,
@@ -39,7 +43,7 @@ class ServiceController {
       duration,
       employee,
       description,
-      petshop_id: auth.user.id
+      petshop_id: petshop.id
     });
 
     return service;
