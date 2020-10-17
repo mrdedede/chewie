@@ -6,7 +6,7 @@ Tecnologias
 
 * AdonisJS
 * ReactJS
-* Banco de dados: MongoDB
+* Banco de dados: SQLite3
 
 Equipe
 ------
