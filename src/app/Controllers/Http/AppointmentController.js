@@ -65,9 +65,15 @@ class AppointmentController {
    *
    * @param {object} ctx
    * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request }) {
+    const data = request.only(['name','date','pet_id', 'vet_service_id']);
+    const appointment = Appointment.find(params.id);
+
+    appointment.merge(data);
+    await appointment.save();
+
+    return appointment;    
   }
 
   /**

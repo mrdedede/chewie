@@ -67,9 +67,15 @@ class ServiceController {
    *
    * @param {object} ctx
    * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request }) {
+      const data = request.only(['name', 'value', 'duration', 'employee', 'description']);
+      const service = await Service.find(params.id);
+
+      service.merge(data);
+      await service.save();
+
+      return service;
   }
 
   /**

@@ -66,7 +66,14 @@ class BookingController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request }) {
+      const data = request.only(['name', 'date', 'pet_id', 'service_id']);
+      const booking = await Booking.find(params.id);
+
+      booking.merge(data);
+      await booking.save();
+
+      return booking;
   }
 
   /**

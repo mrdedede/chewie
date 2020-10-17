@@ -68,6 +68,13 @@ class PetController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+    const data = request.only(['name', 'pet_type', 'breed', 'age']);
+    const pet = await Pet.find(params.id);
+
+    pet.merge(data);
+    await pet.save();
+
+    return pet;
   }
 
   /**

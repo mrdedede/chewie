@@ -60,9 +60,15 @@ class VetController {
    *
    * @param {object} ctx
    * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request }) {
+    const data = request.only(['name', 'address', 'phone']);
+    const vet = await Vet.find(params.id);
+
+    vet.merge(data);
+    await vet.save();
+
+    return vet;
   }
 
   /**

@@ -66,15 +66,14 @@ class ClientController {
    * @param {Response} ctx.response
    */
   async update ({ params, request }) {
-    /* 
-      const data = request.only(['content'])
-      const post = await Post.find(params.id) //trocar "Post" pelo objeto em questão
+    
+      const data = request.only(['name', 'phone']);
+      const client = await Client.find(params.id);
 
-      post.merge(data) //trocar "Post" pelo objeto em questão
-      await post.save() //trocar "Post" pelo objeto em questão
+      client.merge(data);
+      await client.save();
 
-      return post //trocar "Post" pelo objeto em questão
-    */
+      return client;
   }
 
   /**

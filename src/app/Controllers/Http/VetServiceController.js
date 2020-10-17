@@ -71,6 +71,13 @@ class VetServiceController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+      const data = request.only(['name', 'value', 'duration', 'employee', 'description']);
+      const vetService = await VetService.find(params.id);
+
+      vetService.merge(data);
+      await vetService.save();
+
+      return vetService;
   }
 
   /**
