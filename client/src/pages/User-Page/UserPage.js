@@ -1,39 +1,70 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+import queryString from 'query-string'
 import './UserPage.css'
 
 import MockPhoto from './mock-person-photo.jpeg'
 import MockPuppies from '../Homepage/two-yellow-labrador-retriever.jpeg'
 import MockShihtzu from '../Homepage/shihtzu.jpeg'
 
-export default function UserPage({ history }) {
-  const [keyWord, setKeyWord] = useState('')
-
-  let userData = {
-    profilePicture: MockPhoto,
-    name: "John Doe",
-    bio: "Proud owner of a shih-tzu and two puppies"
+export default function UserPage(props) {
+  let queryData = queryString.parse(window.location.search)
+  setTimeout(runOnce(), 3000)
+  function runOnce() {
+    axios.get('https://chewie-api.herokuapp.com/clients', {
+      headers: {
+        'Authorization': `bearer ${queryData.token}`
+      }
+    }).then(result => {
+      for(let user of result.data) {
+        if(user.user_id == queryData.id) {
+          setUserData({
+            profilePicture: MockPhoto,
+            name: user.name,
+            bio: user.bio
+          })
+        }
+      }
+    })
+    axios.get('https://chewie-api.herokuapp.com/pets', {
+      headers: {
+        'Authorization': `bearer ${queryData.token}`
+      }
+    }).then(fetchedPet => {
+      let pets = []
+      if(fetchedPet.length > 0) {
+        for(let pet of fetchedPet) {
+          if(pet.client_id == queryData.id) {
+            pets.push({
+              petPic: MockPuppies,
+              petData: pet.pet_type,
+              petAge: pet.age,
+              petBio: pet.breed
+            })
+          }
+        }
+      }
+      setPets(pets)
+    })
   }
 
-  let pets = [
-    {
-      petPic: MockPuppies,
-      petName: "Chewie and Scooby",
-      petData: "Dog, Labrador Retriever",
-      petAge: "1 month",
-      petBio: "Likes milk and beef"
-    },
-    {
-      petPic: MockShihtzu,
-      petName: "Nina",
-      petData: "Dog, Shihtzu",
-      petAge: "2 Years",
-      petBio: "Likes bones and plastic cups"
-    }
-  ]
+  const [keyWord, setKeyWord] = useState('')
+  const [userData, setUserData] = useState({
+    profilePicture: MockPhoto,
+    name: "John Doe",
+    bio: "Proud Owner of Pets!"
+  })
+  const [pets, setPets] = useState([{
+    petPic: MockPuppies,
+    petName: "Chewie",
+    petData: "",
+    petAge: "",
+    petBio: ""
+  }])
 
   function search(e) {
     e.preventDefault()
-    history.push('/search')
+    props.history.push(`/search?id=${queryData.id}&token=${queryData.token}&searchedShops=${keyWord}`)
   }
 
   return (
@@ -47,7 +78,7 @@ export default function UserPage({ history }) {
       <br />
       <div className="container-user-data">
         <div>
-          <img src={userData.profilePicture} width='250' height='250'/>
+          <img src={userData.profilePicture} width='250' height='250' alt="user"/>
         </div>
         <div>
           <h1>{userData.name}</h1>
@@ -60,7 +91,7 @@ export default function UserPage({ history }) {
       {
         pets.map((pet) => { return (
           <div className="container-user-data">
-            <img src={pet.petPic} width='250' height='250' />
+            <img src={pet.petPic} width='250' height='250' alt="pet"/>
             <div>
               <h1>{pet.petName}</h1>
               <p>{pet.petData}</p>

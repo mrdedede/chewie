@@ -6,7 +6,7 @@ import Routes from './routes'
 function App() {
   return (
     <div id="app">
-      <Routes />
+      <Routes/>
     </div>
   )
 }

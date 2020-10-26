@@ -1,0 +1,29 @@
+.form-container {
+  text-align: center;
+  margin: 7vmax;
+  height: 45vmax;
+  background-color: #D8D8D8;
+  border-radius: 1vmax;
+  border: transparent #000000
+}
+
+.login-field {
+  margin: 1vmax;
+  width: 50%;
+  height: 40px;
+  font-size: large;
+}
+
+.submit-button {
+  margin-top: 1vmax;
+  height: 4vmax;
+  font-size: large;
+  color: #F2F2F2;
+  background-color: #F20544;
+  border: 0px;
+  border-radius: 10%;
+}
+
+.submit-button:hover {
+  background-color: #FB2F65;
+}

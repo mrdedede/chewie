@@ -15,7 +15,7 @@ export default function PetShop({ history }) {
   return (
     <div>
       <div className="petshop-container">
-        <img src={shopImage} height="300"/>
+        <img src={shopImage} height="300" alt="Shop Image"/>
         <div>
           <h2 className="text-centralized">{shopName}</h2>
           <div className="petshop-bio-container">
@@ -29,7 +29,7 @@ export default function PetShop({ history }) {
         {
           calendars.map(calendar => { return (
             <div className="text-center">
-              <img src={MockCalendar} height="200"/>
+              <img src={MockCalendar} alt="Calendar" height="200"/>
             </div>
           )})
         }
