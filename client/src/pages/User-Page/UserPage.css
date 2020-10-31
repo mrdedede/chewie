@@ -25,3 +25,26 @@
   display: grid;
   grid-template-columns: 25% auto;
 }
+
+.fixed {
+  position: fixed;
+  border-radius: 5px;
+}
+
+.add-button {
+  background-color: #ABD907;
+}
+
+.add-button:hover {
+  background-color: #C0D907;
+  cursor: pointer;
+}
+
+.darker-background {
+  text-align: center;
+  background-color: #D8D8D8;
+}
+
+.center-align {
+  text-align: center;
+}
