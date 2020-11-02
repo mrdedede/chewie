@@ -47,8 +47,10 @@ export default function Signup(props) {
     }).then(result => {
         if(usertype === "client") {
           props.history.push(`user?id=${authToken.user.id}&token=${authToken.token.token}`)
-        } else {
+        } else if (usertype === "petshop") {
           props.history.push(`shop?id=${authToken.user.id}&token=${authToken.token.token}`)
+        } else {
+          props.history.push(`vet?id=${authToken.user.id}&token=${authToken.token.token}`)
         }
       })
       .catch(error => {

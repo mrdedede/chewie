@@ -9,6 +9,7 @@ import Signup from './pages/Sign-Up/Signup'
 import UserPage from './pages/User-Page/UserPage'
 import SearchTab from './pages/Search-Tab/SearchTab'
 import PetShop from './pages/PetShop/PetShop'
+import Veterinarian from './pages/Veterinarian/Veterinarian'
 
 export default function Routes() {
   return (
@@ -20,8 +21,9 @@ export default function Routes() {
         <Route path="/login" exact={true} component={Login}/>
         <Route path="/signup" exact={true} component={Signup} />
         <Route path="/user" component={UserPage}/>
-        <Route path="/search" exact={true} component={SearchTab}/>
+        <Route path="/search" component={SearchTab}/>
         <Route path="/shop" component={PetShop}/>
+        <Route path="/vet" component={Veterinarian}/>
       </Switch>
       <Route component={Footer} />
     </BrowserRouter>

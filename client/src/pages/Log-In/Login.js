@@ -19,8 +19,10 @@ export default function Login({ history }) {
         let userData = result.data.user
         if(userData.type === "client") {
           history.push(`user?id=${userData.id}&token=${authToken.token}`)
+        } else if (userData.type === "petshop"){
+          history.push(`shop?id=${userData.id}&token=${authToken.token}&shopId=${userData.id}`)
         } else {
-          history.push(`shop?id=${userData.id}&token=${authToken.token}`)
+          history.push(`vet?id=${userData.id}&token=${authToken.token}&shopId=${userData.id}`)
         }
       })
       .catch(error => {

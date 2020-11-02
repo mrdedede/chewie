@@ -8,7 +8,7 @@ export default class Homepage extends React.Component{
   }
 
   navigateSignUp() {
-    this.props.history.push('signup')
+    this.props.history.push('/signup')
   }
 
   render() {
@@ -35,9 +35,9 @@ export default class Homepage extends React.Component{
           <h1>What are you waiting for? Join our community now!</h1>
           <div className="bit-margin">
             <span></span>
-            <button className="circle-button" onClick={this.navigateSignUp}>Sign Up!</button>
+            <button className="circle-button" onClick={e => this.navigateSignUp()}>Sign Up!</button>
             <span></span>
-            <button className="circle-button" onClick={this.navigateLogIn}>Log In!</button>
+            <button className="circle-button" onClick={e => this.navigateLogIn()}>Log In!</button>
             <span></span>
           </div>
         </div>

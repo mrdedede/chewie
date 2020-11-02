@@ -19,7 +19,9 @@ export default class SearchTab extends React.Component {
       }
     }).then(result => {
       result.data.forEach(shop => {
+        console.log(result)
         this.shops.push({
+          shopType: 'shop',
           shopId: shop.id,
           shopName: shop.name,
           petshopImg: MockShop,
@@ -34,6 +36,7 @@ export default class SearchTab extends React.Component {
     }).then(result => {
       result.data.forEach(shop => {
         this.shops.push({
+          shopType: 'vet',
           shopId: shop.id,
           shopName: shop.name,
           petshopImg: MockShop,
@@ -44,10 +47,10 @@ export default class SearchTab extends React.Component {
     })
   }
 
-  redirect(e, shopId) {
+  redirect(e, shopId, shopType) {
     e.preventDefault()
     this.props.history.push(
-      `/shop?id=${this.queryData.id}&token=${this.queryData.token}&shopId=${shopId}`)
+      `/${shopType}?id=${this.queryData.id}&token=${this.queryData.token}&shopId=${shopId}`)
   }
 
   render() {
@@ -60,9 +63,10 @@ export default class SearchTab extends React.Component {
             this.shops.map(shop => { return (
               <div className="shoplist-item">
                 <img src={shop.petshopImg} height="250" width="auto" className="img-margin" 
-                  alt="Shop" onClick={e => this.redirect(e)}/>
+                  alt="Shop" onClick={e => this.redirect(e, shop.shopId, shop.shopType)}/>
                 <div>
-                  <h2 className="text-centralized" onClick={e => this.redirect(e, shop.shopId)}>
+                  <h2 className="text-centralized"
+                      onClick={e => this.redirect(e, shop.shopId, shop.shopType)}>
                     {shop.shopName}
                   </h2>
                   <div className="divided-data">
