@@ -59,15 +59,18 @@ export default class PetShop extends React.Component {
     this.disabled = pass
   }
 
-  postTime(date, time, selectedCalendar, petName) {
-    date = Date(date).split(' ')
-    date[4] = time
+  postTime(date, time, selectedCalendar, petName, serviceName) {
+    date = new Date(date).toISOString()
+    date = date.split('T')
+    let initDate = `${date[0]} ${time}:00`
+    let endDate = `${date[0]} ${time.split(':')[0]}:${parseInt(time.split(':')[1]) + 30}:00`
     let selected = {
-      name: '',
-      date: date,
-      petshop_id: this.queryData.shopId,
+      name: serviceName,
+      date_start: initDate,
+      date_end: endDate,
+      petshop_username: this.shopData.username,
       service_id: selectedCalendar,
-      pet_id: petName
+      pet_name: petName
     }
     axios.post(`https://chewie-api.herokuapp.com/bookings`, selected,  {headers : {
         'Authorization': `bearer ${this.queryData.token}`
@@ -90,7 +93,7 @@ export default class PetShop extends React.Component {
           (<h2>Loading...</h2>) : (
           <div>
             <div className="petshop-container">
-              <img src={MockShop} height="300" alt="Shop Image"/>
+              <img src={MockShop} height="300" alt="Shop Profile"/>
               <div>
                 <h2 className="text-centralized">{this.shopData.name}</h2>
                 <div className="petshop-bio-container">
@@ -107,40 +110,40 @@ export default class PetShop extends React.Component {
                     <h2>{calendar.description}</h2>
                     <Calendar className="left-margin" value={this.selectedDate}
                       onChange={date => this.verifyCalendar(date, calendar.id)}/>
+                      {
+                        this.state.unSeletedDate ?
+                        (<h2>Loading...</h2>) : (
+                          <div className="center-align">
+                            <TimePicker onChange={data => this.verifyTime(data)}
+                              value={this.selectedTime}/>
+                            <br />
+                            <input placeholder="Who's the pet?" value={this.petName} 
+                                onChange={e => this.setPetName(e)}/>
+                            <button onClick={e => this.postTime(this.selectedDate, this.selectedTime,
+                                this.selectedCalendar, this.petName, calendar.name)}>
+                              Send
+                            </button>
+                            {
+                              this.bookedServices.length ? 
+                              (
+                                <div>
+                                  <h3>Unavailable times:</h3>
+                                  {
+                                    this.bookedServices.forEach(service => { return (
+                                      <span>
+                                        {service.date}
+                                      </span>
+                                    )})
+                                  }
+                                </div>
+                              ) : 
+                              (<h2>All the times are available!</h2>)
+                            }
+                          </div>
+                        )
+                      }
                   </div>
                 )})
-              }
-              {
-                this.state.unSeletedDate ?
-                (<h2>Loading...</h2>) : (
-                  <div className="center-align">
-                    <TimePicker onChange={data => this.verifyTime(data)}
-                      value={this.selectedTime}/>
-                    <br />
-                    <input placeholder="Who's the pet?" value={this.petName} 
-                        onChange={e => this.setPetName(e)}/>
-                    <button onClick={e => this.postTime(this.selectedDate, this.selectedTime,
-                        this.selectedCalendar, this.petName)}>
-                      Send
-                    </button>
-                    {
-                      this.bookedServices.length ? 
-                      (
-                        <div>
-                          <h3>Unavailable times:</h3>
-                          {
-                            this.bookedServices.forEach(service => { return (
-                              <span>
-                                {service.date}
-                              </span>
-                            )})
-                          }
-                        </div>
-                      ) : 
-                      (<h2>All the times are available!</h2>)
-                    }
-                  </div>
-                )
               }
             </div>
             <br />
